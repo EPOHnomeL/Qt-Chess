@@ -1,16 +1,17 @@
 #include "board.h"
+using namespace std;
 
 Board::Board()
 {
   // Initalize variables
 }
 
-string Board::GetANotation()
+std::string Board::GetANotation()
 {
   return this->ANotation;
 }
 
-void Board::AddMove(string m)
+void Board::AddMove(std::string m)
 {
   // put Algebriac notation
 }

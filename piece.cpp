@@ -5,16 +5,17 @@ Piece::Piece()
 {
 }
 
-Board Piece::GetValidMoves()
+Square Piece::GetPosition()
 {
-}
-
-pos Piece::GetPosition()
-{
+    return {0, 0};
 }
 
 int Piece::GetScore()
 {
+    return 0;
 }
+
+BoardSquares Piece::GetValidMoves()
+{ };
 
 // Piece::GetModel();

@@ -3,28 +3,22 @@
 
 #include "piece.h"
 #include <string>
-using namespace std;
-
-struct BoardSquares
-{
-    Piece board[8][8];
-};
 
 class Board
 {
 public:
     Board();
-    string GetANotation();
-    void MovePiece(Piece from, Piece to);
+    std::string GetANotation();
+    void MovePiece(Piece &from, Square to);
     int GetNameNumber();
     void IncrementMoveNumber();
     void PrintBoard();
 
 private:
-    void AddMove(string m);
-    BoardSquares boardstate;
+    void AddMove(std::string m);
+    std::string boardstate[9][9];
     int moveNumber;
-    string ANotation;
+    std::string ANotation;
 };
 
 #endif // BOARD_H

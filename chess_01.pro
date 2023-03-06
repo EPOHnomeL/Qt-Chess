@@ -13,6 +13,7 @@ SOURCES += \
     chess.cpp \
     main.cpp \
     mainwindow.cpp \
+    pawn.cpp \
     piece.cpp \
     player.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     board.h \
     chess.h \
     mainwindow.h \
+    pawn.h \
     piece.h \
     player.h
 

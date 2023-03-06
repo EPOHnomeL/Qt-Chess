@@ -1,6 +1,8 @@
 #include "chess.h"
 #include <string>
 
+using namespace std;
+
 Chess::Chess() // Player w, Player b);
 {
     // Initialize players

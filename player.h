@@ -2,22 +2,21 @@
 #define PLAYER_H
 
 #include <string>
-using namespace std;
 
 class Player
 {
 public:
-    Player(string playerName, bool isWhite);
-    string GetPiecesLost();
-    string GetPreviousMoves();
-    void AddPreviousMoves(string s);
+    Player(std::string playerName, bool isWhite);
+    std::string GetPiecesLost();
+    std::string GetPreviousMoves();
+    void AddPreviousMoves(std::string s);
     int GetScore();
     void IncreaseScore(int score);
 
 private:
-    string playerName;
-    string piecesLost;
-    string previousMoves;
+    std::string playerName;
+    std::string piecesLost;
+    std::string previousMoves;
     bool isWhite;
     int score;
 };

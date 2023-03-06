@@ -1,11 +1,10 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "board.h";
-#include <string>;
-using namespace std;
+#include <string>
 
-struct pos
+struct BoardSquares;
+struct Square
 {
     int x, y;
 };
@@ -14,17 +13,21 @@ class Piece
 {
 public:
     Piece();
-    Board GetValidMoves();
-    void SetPostion(Piece p);
-    pos GetPosition();
+    virtual BoardSquares GetValidMoves();
+    Square GetPosition();
     int GetScore();
     // GetModel(): Image
 private:
-    string pieceName;
+    std::string pieceName;
     bool isOwnerWhite;
     int score;
-    pos pos;
+    Square pos;
     // Image model
+};
+
+struct BoardSquares
+{
+    Square board[8][8];
 };
 
 #endif // PIECE_H
