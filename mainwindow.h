@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QPushButton>
+#include <QLayout>
+#include "ui_chessboard.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -23,6 +25,7 @@ public:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    UI_ChessBoard *cb;
 
 };
 #endif // MAINWINDOW_H

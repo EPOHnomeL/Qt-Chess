@@ -5,6 +5,7 @@
 #include <QPoint>
 #include <QMouseEvent>
 
+
 class MyGraphicsScene : public QGraphicsScene
 {
     Q_OBJECT

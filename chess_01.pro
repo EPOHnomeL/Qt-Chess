@@ -16,7 +16,8 @@ SOURCES += \
     mygraphicsscene.cpp \
     pawn.cpp \
     piece.cpp \
-    player.cpp
+    player.cpp \
+    ui_chessboard.cpp
 
 HEADERS += \
     board.h \
@@ -25,7 +26,8 @@ HEADERS += \
     mygraphicsscene.h \
     pawn.h \
     piece.h \
-    player.h
+    player.h \
+    ui_chessboard.h
 
 FORMS += \
     mainwindow.ui
@@ -34,3 +36,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res.qrc

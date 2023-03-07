@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/res/chesspieces">
+        <file>b_pawn.png</file>
+    </qresource>
+</RCC>
