@@ -5,7 +5,7 @@ Piece::Piece()
 {
 }
 
-Square Piece::GetPosition()
+SquarePosition Piece::GetPosition()
 {
     return {0, 0};
 }

@@ -4,9 +4,9 @@
 #include <string>
 
 struct BoardSquares;
-struct Square
+struct SquarePosition
 {
-    int x, y;
+    int row, col;
 };
 
 class Piece
@@ -14,20 +14,20 @@ class Piece
 public:
     Piece();
     virtual BoardSquares GetValidMoves();
-    Square GetPosition();
+    SquarePosition GetPosition();
     int GetScore();
     // GetModel(): Image
 private:
     std::string pieceName;
     bool isOwnerWhite;
     int score;
-    Square pos;
+    SquarePosition pos;
     // Image model
 };
 
 struct BoardSquares
 {
-    Square board[8][8];
+    SquarePosition board[8][8];
 };
 
 #endif // PIECE_H

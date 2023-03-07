@@ -9,7 +9,7 @@ class Board
 public:
     Board();
     std::string GetANotation();
-    void MovePiece(Piece &from, Square to);
+    void MovePiece(Piece &from, SquarePosition to);
     int GetNameNumber();
     void IncrementMoveNumber();
     void PrintBoard();

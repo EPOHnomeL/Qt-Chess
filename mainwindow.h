@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui

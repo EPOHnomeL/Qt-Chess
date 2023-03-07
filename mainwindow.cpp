@@ -1,14 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "mygraphicsscene.h"
 #include <QPainter>
 #include <QGraphicsRectItem>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    scene = new QGraphicsScene();
+
+    scene = new MyGraphicsScene();
     ui->graphView->setScene(scene);
     QGraphicsRectItem *squares[8][8];
     for (int i = 0; i < 8; ++i)
