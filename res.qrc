@@ -1,5 +1,16 @@
 <RCC>
-    <qresource prefix="/res/chesspieces">
-        <file>b_pawn.png</file>
+    <qresource prefix="/res">
+        <file>chesspieces/b_bishop.png</file>
+        <file>chesspieces/b_king.png</file>
+        <file>chesspieces/b_knight.png</file>
+        <file>chesspieces/b_pawn.png</file>
+        <file>chesspieces/b_queen.png</file>
+        <file>chesspieces/b_rook.png</file>
+        <file>chesspieces/w_bishop.png</file>
+        <file>chesspieces/w_king.png</file>
+        <file>chesspieces/w_knight.png</file>
+        <file>chesspieces/w_pawn.png</file>
+        <file>chesspieces/w_queen.png</file>
+        <file>chesspieces/w_rook.png</file>
     </qresource>
 </RCC>

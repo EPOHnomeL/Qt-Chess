@@ -14,8 +14,9 @@ class UI_ChessBoard : public QWidget
 public:
     explicit UI_ChessBoard(QWidget *parent = nullptr);
     void SetBoardInfo(bool b);
+    void ClearBoard();
+    QGraphicsItem* PutPieceAt(QString resName, int row, int col);
     void ResetBoard();
-
 signals:
 
 private:

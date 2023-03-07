@@ -3,6 +3,51 @@
 #include <QLayout>
 #include <QPixmap>
 
+const QString starting[2][2][8] = {
+    {{"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"},
+     {"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"}},
+    {{"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"},
+     {"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"}}};
+
+struct ChessPieces
+{
+    QGraphicsPixmapItem *pawns[8];
+    QGraphicsPixmapItem *bishops[2];
+    QGraphicsPixmapItem *knighhts[2];
+    QGraphicsPixmapItem *rooks[2];
+    QGraphicsPixmapItem *queen;
+    QGraphicsPixmapItem *king;
+};
+
+QGraphicsItem *UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
+{
+    QImage *image = new QImage(":res/chesspieces/" + resName + ".png");
+    QPixmap p = QPixmap::fromImage(*image).scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *png = scene->addPixmap(p);
+    png->setPos(17 + (row * 100), 13 + (col * 100));
+    return png;
+}
+
+void UI_ChessBoard::ResetBoard()
+{
+    ClearBoard();
+    int row = 0;
+    for (int color = 0; color < 2; ++color)
+    {
+        row = color == 0 ? 1 : 7;
+        QString c = color == 1 ? "w" : "b";
+        for (int i = 0; i < 2; ++i)
+        {
+            for (int j = 0; j < 8; ++j)
+            {
+
+                QString resName = c + "_" + starting[color][i][j];
+                PutPieceAt(resName, j, row-i);
+            }
+        }
+    }
+}
+
 UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
 {
     scene = new MyGraphicsScene();
@@ -13,13 +58,8 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
     this->setLayout(layout);
     view->setScene(scene);
     ResetBoard();
-    SetBoardInfo(false);
+    //SetBoardInfo(false);
 
-
-    QImage *image = new QImage(":res/chesspieces/a.png");
-    QPixmap p = QPixmap::fromImage(*image).scaled(80,80,Qt::KeepAspectRatio,Qt::SmoothTransformation);
-    QGraphicsPixmapItem *png = scene->addPixmap(p);
-    png->setPos(118, 112);
     view->setFixedSize(803, 803);
     view->show();
 }
@@ -35,7 +75,7 @@ void UI_ChessBoard::SetBoardInfo(bool b)
     }
 }
 
-void UI_ChessBoard::ResetBoard()
+void UI_ChessBoard::ClearBoard()
 {
     scene->clear();
     for (int i = 0; i < 8; ++i)
@@ -43,7 +83,8 @@ void UI_ChessBoard::ResetBoard()
         for (int j = 0; j < 8; ++j)
         {
             squares[i][j] = new QGraphicsRectItem(i * 100, j * 100, 100, 100);
-            squares[i][j]->setBrush(QBrush(((i + j) % 2 == 0) ? QColor(238, 238, 210) : QColor(118, 150, 86)));
+            squares[i][j]->setPen(Qt::NoPen);
+            squares[i][j]->setBrush(QBrush(((i + j) % 2 == 0) ? QColor(121, 72, 57) : QColor(93, 50, 49)));
             scene->addItem(squares[i][j]);
             if (j == 0)
             {
