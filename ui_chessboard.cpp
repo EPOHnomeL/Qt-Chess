@@ -9,21 +9,31 @@ const QString starting[2][2][8] = {
     {{"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"},
      {"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"}}};
 
-struct ChessPieces
+UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
 {
-    QGraphicsPixmapItem *pawns[8];
-    QGraphicsPixmapItem *bishops[2];
-    QGraphicsPixmapItem *knighhts[2];
-    QGraphicsPixmapItem *rooks[2];
-    QGraphicsPixmapItem *queen;
-    QGraphicsPixmapItem *king;
-};
+    scene = new MyGraphicsScene();
+    view = new QGraphicsView(this);
+    layout = new QGridLayout(this);
+    label = new QLabel(this);
+
+    layout->addWidget(view);
+    layout->addWidget(label);
+
+    this->setLayout(layout);
+    view->setScene(scene);
+
+    ResetBoard();
+    SetBoardInfo(false);
+    SetInfoText("Hello");
+    view->setFixedSize(803, 803);
+    view->show();
+}
 
 QGraphicsItem *UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
 {
     QImage *image = new QImage(":res/chesspieces/" + resName + ".png");
     QPixmap p = QPixmap::fromImage(*image).scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    QGraphicsPixmapItem *png = scene->addPixmap(p);
+    QGraphicsPixmapItem *png = scene->addPixmap(p); // Add pointer to array
     png->setPos(17 + (row * 100), 13 + (col * 100));
     return png;
 }
@@ -46,22 +56,7 @@ void UI_ChessBoard::ResetBoard()
             }
         }
     }
-}
 
-UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
-{
-    scene = new MyGraphicsScene();
-    view = new QGraphicsView(this);
-    layout = new QGridLayout(this);
-
-    layout->addWidget(view);
-    this->setLayout(layout);
-    view->setScene(scene);
-    ResetBoard();
-    //SetBoardInfo(false);
-
-    view->setFixedSize(803, 803);
-    view->show();
 }
 
 void UI_ChessBoard::SetBoardInfo(bool b)
@@ -73,6 +68,11 @@ void UI_ChessBoard::SetBoardInfo(bool b)
             b ? text[j][i]->show() : text[j][i]->hide();
         }
     }
+}
+
+void UI_ChessBoard::SetInfoText(QString s)
+{
+    label->setText(s);
 }
 
 void UI_ChessBoard::ClearBoard()

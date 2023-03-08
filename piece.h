@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include <string>
+#include <QString>
 
 struct BoardSquares;
 struct SquarePosition
@@ -18,7 +18,7 @@ public:
     int GetScore();
     // GetModel(): Image
 private:
-    std::string pieceName;
+    QString pieceName;
     bool isOwnerWhite;
     int score;
     SquarePosition pos;

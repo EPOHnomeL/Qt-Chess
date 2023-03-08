@@ -7,6 +7,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
+#include <QLabel>
 
 class UI_ChessBoard : public QWidget
 {
@@ -14,12 +15,14 @@ class UI_ChessBoard : public QWidget
 public:
     explicit UI_ChessBoard(QWidget *parent = nullptr);
     void SetBoardInfo(bool b);
+    void SetInfoText(QString s);
     void ClearBoard();
     QGraphicsItem* PutPieceAt(QString resName, int row, int col);
     void ResetBoard();
 signals:
 
 private:
+    QLabel *label;
     QLayout *layout;
     QGraphicsView *view;
     QGraphicsScene *scene;

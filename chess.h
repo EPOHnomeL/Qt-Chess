@@ -1,24 +1,30 @@
 #ifndef CHESS_H
 #define CHESS_H
 
-#include <string>
+#include <QString>
+#include "player.h"
+#include "board.h"
+#include "ui_chessboard.h"
 
 class Chess
 {
 public:
-    explicit Chess(); // Player w, Player b);
-    //    void TryMovePiece(Player player, Piece p, Piece to);
+    Chess(Player *w, Player *b);
+    void TryMovePiece(Player player, Piece p, Piece to);
     bool GetGameFinished();
-    std::string GetGameFinishedMessage();
+    QString GetGameFinishedMessage();
     bool GetTurn();
-    //    Board GetBoard();
+    Board GetBoard();
     void NextTurn();
+    Player *GetCurrentPlayer();
+    UI_ChessBoard *ui_chessboard;
 
 private:
-    //    Player player[2];
-    //    Board board;
+    int playerIdx;
+    Player *player[2];
+    Board *board;
     bool gameFinished;
-    std::string gameFinishedMessage;
+    QString gameFinishedMessage;
     bool whitesTurn;
 };
 

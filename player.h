@@ -1,22 +1,42 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <string>
+#include <QString>
+
+struct Select{
+    int pos[2];
+    QString pieceName;
+};
 
 class Player
 {
 public:
-    Player(std::string playerName, bool isWhite);
-    std::string GetPiecesLost();
-    std::string GetPreviousMoves();
-    void AddPreviousMoves(std::string s);
+    explicit  Player(QString playerName, bool isWhite);
+    QString GetPiecesLost();
+    QString GetPreviousMoves();
+    void AddPreviousMoves(QString s);
     int GetScore();
     void IncreaseScore(int score);
 
+    const Select &GetSelectTo() const;
+    void SetSelectTo(const Select &newSelectTo);
+
+    const Select &GetSelectFrom() const;
+    void SetSelectFrom(const Select &newSelectFrom);
+
+    bool GetIsPlayerTurn() const;
+    void ToggleIsPlayerTurn();
+
+    const QString &GetPlayerName() const;
+    void SetPlayerName(const QString &newPlayerName);
+
 private:
-    std::string playerName;
-    std::string piecesLost;
-    std::string previousMoves;
+    bool isPlayerTurn;
+    Select selectTo;
+    Select selectFrom;
+    QString playerName;
+    QString piecesLost;
+    QString previousMoves;
     bool isWhite;
     int score;
 };

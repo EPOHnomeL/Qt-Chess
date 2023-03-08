@@ -2,23 +2,42 @@
 #define BOARD_H
 
 #include "piece.h"
-#include <string>
+#include "player.h"
+#include <QString>
+
+enum pieces
+{
+    empty,
+    w_pawn,
+    w_rook,
+    w_bishop,
+    w_knight,
+    w_queen,
+    w_king,
+    b_pawn,
+    b_rook,
+    b_bishop,
+    b_knight,
+    b_queen,
+    b_king,
+};
 
 class Board
 {
 public:
-    Board();
-    std::string GetANotation();
+    Board(Player *w, Player *b);
+    QString GetANotation();
     void MovePiece(Piece &from, SquarePosition to);
     int GetNameNumber();
     void IncrementMoveNumber();
     void PrintBoard();
 
 private:
-    void AddMove(std::string m);
-    std::string boardstate[9][9];
+    Player *players[2];
+    void AddMove(QString m);
+    int boardstate[8][8];
     int moveNumber;
-    std::string ANotation;
+    QString ANotation;
 };
 
 #endif // BOARD_H

@@ -1,17 +1,18 @@
 #include "board.h"
 using namespace std;
 
-Board::Board()
+Board::Board(Player *w, Player *b)
 {
-  // Initalize variables
+    this->players[0] = w;
+    this->players[1] = b;
 }
 
-std::string Board::GetANotation()
+QString Board::GetANotation()
 {
   return this->ANotation;
 }
 
-void Board::AddMove(std::string m)
+void Board::AddMove(QString m)
 {
   // put Algebriac notation
 }
@@ -28,5 +29,5 @@ void Board::IncrementMoveNumber()
 
 void Board::PrintBoard()
 {
-  // Print board as a string in console
+  // Print board as a QString in console
 }
