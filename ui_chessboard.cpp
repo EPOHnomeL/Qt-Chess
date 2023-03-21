@@ -2,12 +2,7 @@
 #include "mygraphicsscene.h"
 #include <QLayout>
 #include <QPixmap>
-
-const QString starting[2][2][8] = {
-    {{"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"},
-     {"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"}},
-    {{"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"},
-     {"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"}}};
+#include "board.h"
 
 UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
 {
@@ -16,6 +11,7 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
     layout = new QGridLayout(this);
     label = new QLabel(this);
 
+
     layout->addWidget(view);
     layout->addWidget(label);
 
@@ -23,8 +19,7 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
     view->setScene(scene);
 
     ResetBoard();
-    SetBoardInfo(false);
-    SetInfoText("Hello");
+    SetInfoText("Welcome, press SPACEBAR to start game...");
     view->setFixedSize(803, 803);
     view->show();
 }
@@ -51,12 +46,26 @@ void UI_ChessBoard::ResetBoard()
             for (int j = 0; j < 8; ++j)
             {
 
-                QString resName = c + "_" + starting[color][i][j];
-                PutPieceAt(resName, j, row-i);
+                QString resName = c + "_" + sStarting[color][i][j];
+                PutPieceAt(resName, j, row - i);
             }
         }
     }
+}
 
+void UI_ChessBoard::toggleSquareActive(int row, int col)
+{
+    const QColor selectedColor = QColor(0, 0, 0);
+    if (squares[row][col]->brush().color() != selectedColor){
+        squares[row][col]->setBrush(QBrush(selectedColor));
+    } else {
+        squares[row][col]->setBrush(QBrush(((row + col) % 2 == 0) ? QColor(121, 72, 57) : QColor(93, 50, 49)));
+    }
+}
+
+QGraphicsScene *UI_ChessBoard::getScene() const
+{
+    return scene;
 }
 
 void UI_ChessBoard::SetBoardInfo(bool b)
@@ -88,7 +97,6 @@ void UI_ChessBoard::ClearBoard()
             scene->addItem(squares[i][j]);
             if (j == 0)
             {
-
                 text[i][0] = scene->addText(QString::number(8 - i));
                 text[i][0]->setPos(2, 100 * (i));
             }

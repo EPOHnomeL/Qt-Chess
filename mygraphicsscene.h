@@ -2,8 +2,10 @@
 #define MYGRAPHICSSCENE_H
 
 #include <QGraphicsScene>
+#include <QObject>
 #include <QPoint>
 #include <QMouseEvent>
+#include "piece.h"
 
 
 class MyGraphicsScene : public QGraphicsScene
@@ -14,6 +16,7 @@ public:
       ~MyGraphicsScene();
 
 signals:
+    void selectedSquareChanged(SquarePosition pos);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

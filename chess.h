@@ -4,23 +4,24 @@
 #include <QString>
 #include "player.h"
 #include "board.h"
-#include "ui_chessboard.h"
 
-class Chess
+
+class Chess: public QObject
 {
+    Q_OBJECT
 public:
-    Chess(Player *w, Player *b);
+    explicit Chess(QObject *parent = nullptr, Player *w = nullptr, Player *b = nullptr);
     void TryMovePiece(Player player, Piece p, Piece to);
-    bool GetGameFinished();
-    QString GetGameFinishedMessage();
-    bool GetTurn();
-    Board GetBoard();
+    bool getGameFinished();
+    QString getGameFinishedMessage();
+    bool getTurn();
     void NextTurn();
-    Player *GetCurrentPlayer();
-    UI_ChessBoard *ui_chessboard;
+    Player *getCurrentPlayer();
+
+
+    Board *getBoard() const;
 
 private:
-    int playerIdx;
     Player *player[2];
     Board *board;
     bool gameFinished;

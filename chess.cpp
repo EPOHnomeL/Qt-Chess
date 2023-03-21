@@ -1,12 +1,11 @@
 #include "chess.h"
 
-Chess::Chess(Player *w, Player *b)
+Chess::Chess(QObject *parent, Player *w, Player *b) : QObject(parent)
 {
     this->player[0] = w;
     this->player[1] = b;
-    board = new Board(w, b);
-    playerIdx = 0;
-    ui_chessboard = new UI_ChessBoard();
+    board = new Board(this, w, b);
+    this->whitesTurn = true;
 }
 
 void Chess::TryMovePiece(Player player, Piece p, Piece to)
@@ -17,26 +16,21 @@ void Chess::TryMovePiece(Player player, Piece p, Piece to)
     // If not return false.
 }
 
-bool Chess::GetGameFinished()
+bool Chess::getGameFinished()
 {
     // If Mate or stalemate or resign or draw return true and set gameFinishedMessage.
     // else return false
     return false;
 }
 
-QString Chess::GetGameFinishedMessage()
+QString Chess::getGameFinishedMessage()
 {
     return gameFinishedMessage;
 }
 
-bool Chess::GetTurn()
+bool Chess::getTurn()
 {
     return whitesTurn;
-}
-
-Board Chess::GetBoard()
-{
-    return *board;
 }
 
 void Chess::NextTurn()
@@ -44,7 +38,12 @@ void Chess::NextTurn()
     whitesTurn = !whitesTurn;
 }
 
-Player *Chess::GetCurrentPlayer()
+Player *Chess::getCurrentPlayer()
 {
-    return player[playerIdx];
+    return player[(int)!whitesTurn];
+}
+
+Board *Chess::getBoard() const
+{
+    return board;
 }

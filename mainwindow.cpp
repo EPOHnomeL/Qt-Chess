@@ -15,11 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Player *w = new Player("White", true);
     Player *b = new Player("Black", false);
-    Chess *chessGame = new Chess(w, b);
+    Chess *chessGame = new Chess(this, w, b);
 
-    this->setCentralWidget(chessGame->ui_chessboard);
-
-    ui->label->setText(chessGame->GetCurrentPlayer()->GetPlayerName()+"'s turn");
+    this->setCentralWidget(chessGame->getBoard()->getUi_chessboard());
 }
 
 MainWindow::~MainWindow()

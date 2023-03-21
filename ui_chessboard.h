@@ -1,6 +1,5 @@
 #ifndef UI_CHESSBOARD_H
 #define UI_CHESSBOARD_H
-
 #include <QObject>
 #include <QWidget>
 #include <QLayout>
@@ -8,7 +7,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QLabel>
-
+#include "piece.h"
+#include "mygraphicsscene.h"
 class UI_ChessBoard : public QWidget
 {
     Q_OBJECT
@@ -19,13 +19,15 @@ public:
     void ClearBoard();
     QGraphicsItem* PutPieceAt(QString resName, int row, int col);
     void ResetBoard();
-signals:
+    void toggleSquareActive(int row, int col);
+
+    QGraphicsScene *getScene() const;
 
 private:
     QLabel *label;
     QLayout *layout;
     QGraphicsView *view;
-    QGraphicsScene *scene;
+    MyGraphicsScene *scene;
     QGraphicsRectItem *squares[8][8];
     QGraphicsTextItem *text[8][2];
 };
