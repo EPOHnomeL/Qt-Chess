@@ -29,46 +29,45 @@ int Player::GetScore()
 
 void Player::IncreaseScore(int score)
 {
-    this->score += score;
+  this->score += score;
 }
 
 const Select &Player::GetSelectTo() const
 {
-    return selectTo;
+  return selectTo;
 }
 
 void Player::SetSelectTo(const Select &newSelectTo)
 {
-    selectTo = newSelectTo;
+  selectTo = newSelectTo;
 }
 
 const Select &Player::GetSelectFrom() const
 {
-    return selectFrom;
+  return selectFrom;
 }
 
 void Player::SetSelectFrom(const Select &newSelectFrom)
 {
-    selectFrom = newSelectFrom;
+  selectFrom = newSelectFrom;
 }
 
 bool Player::GetIsPlayerTurn() const
 {
-    return isPlayerTurn;
+  return isPlayerTurn;
 }
 
 void Player::ToggleIsPlayerTurn()
 {
-    isPlayerTurn = !isPlayerTurn;
+  isPlayerTurn = !isPlayerTurn;
 }
 
 const QString &Player::GetPlayerName() const
 {
-    return playerName;
+  return playerName;
 }
 
 void Player::SetPlayerName(const QString &newPlayerName)
 {
-    playerName = newPlayerName;
+  playerName = newPlayerName;
 }
-

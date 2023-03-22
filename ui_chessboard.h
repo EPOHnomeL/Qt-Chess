@@ -17,11 +17,11 @@ public:
     void SetBoardInfo(bool b);
     void SetInfoText(QString s);
     void ClearBoard();
-    QGraphicsItem* PutPieceAt(QString resName, int row, int col);
+    void PutPieceAt(QString resName, int row, int col);
+    void RemovePieceAt(int row, int col);
     void ResetBoard();
     void toggleSquareActive(int row, int col);
-
-    QGraphicsScene *getScene() const;
+    MyGraphicsScene *getScene() const;
 
 private:
     QLabel *label;
@@ -29,6 +29,7 @@ private:
     QGraphicsView *view;
     MyGraphicsScene *scene;
     QGraphicsRectItem *squares[8][8];
+    QGraphicsPixmapItem *piecesPngs[8][8];
     QGraphicsTextItem *text[8][2];
 };
 

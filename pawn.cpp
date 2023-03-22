@@ -2,10 +2,9 @@
 
 Pawn::Pawn()
 {
-
 }
 
-//BoardSquares Pawn::GetValidMoves()
+// BoardSquares Pawn::GetValidMoves()
 //{
 
 //}

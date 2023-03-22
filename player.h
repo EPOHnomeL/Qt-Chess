@@ -3,7 +3,8 @@
 
 #include <QString>
 
-struct Select{
+struct Select
+{
     int pos[2];
     QString pieceName;
 };
@@ -11,7 +12,7 @@ struct Select{
 class Player
 {
 public:
-    explicit  Player(QString playerName, bool isWhite);
+    explicit Player(QString playerName, bool isWhite);
     QString GetPiecesLost();
     QString GetPreviousMoves();
     void AddPreviousMoves(QString s);

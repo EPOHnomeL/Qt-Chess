@@ -15,7 +15,6 @@ int Piece::GetScore()
     return 0;
 }
 
-BoardSquares Piece::GetValidMoves()
-{ };
+BoardSquares Piece::GetValidMoves(){};
 
 // Piece::GetModel();

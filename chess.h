@@ -5,8 +5,7 @@
 #include "player.h"
 #include "board.h"
 
-
-class Chess: public QObject
+class Chess : public QObject
 {
     Q_OBJECT
 public:
@@ -17,7 +16,6 @@ public:
     bool getTurn();
     void NextTurn();
     Player *getCurrentPlayer();
-
 
     Board *getBoard() const;
 

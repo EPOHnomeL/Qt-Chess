@@ -3,11 +3,11 @@
 
 #include "piece.h"
 
-class Pawn: public Piece
+class Pawn : public Piece
 {
 public:
     Pawn();
-//    BoardSquares GetValidMoves();
+    //    BoardSquares GetValidMoves();
 };
 
 #endif // PAWN_H

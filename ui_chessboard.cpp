@@ -11,7 +11,6 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
     layout = new QGridLayout(this);
     label = new QLabel(this);
 
-
     layout->addWidget(view);
     layout->addWidget(label);
 
@@ -24,31 +23,34 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
     view->show();
 }
 
-QGraphicsItem *UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
+void UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
 {
+    if(resName == empty){return;}
     QImage *image = new QImage(":res/chesspieces/" + resName + ".png");
     QPixmap p = QPixmap::fromImage(*image).scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *png = scene->addPixmap(p); // Add pointer to array
     png->setPos(17 + (row * 100), 13 + (col * 100));
-    return png;
+    piecesPngs[row][col] = png;
+}
+
+void UI_ChessBoard::RemovePieceAt(int col, int row)
+{
+
+    if(piecesPngs[row][col] != nullptr){
+        scene->removeItem(piecesPngs[row][col]);
+        scene->update();
+        view->update();
+        piecesPngs[row][col] = nullptr;
+    }
 }
 
 void UI_ChessBoard::ResetBoard()
 {
     ClearBoard();
-    int row = 0;
-    for (int color = 0; color < 2; ++color)
-    {
-        row = color == 0 ? 1 : 7;
-        QString c = color == 1 ? "w" : "b";
-        for (int i = 0; i < 2; ++i)
-        {
-            for (int j = 0; j < 8; ++j)
-            {
-
-                QString resName = c + "_" + sStarting[color][i][j];
-                PutPieceAt(resName, j, row - i);
-            }
+    for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
+            QString resName = piecesNames[starting[i][j]];
+            PutPieceAt(resName, j, i);
         }
     }
 }
@@ -56,14 +58,17 @@ void UI_ChessBoard::ResetBoard()
 void UI_ChessBoard::toggleSquareActive(int row, int col)
 {
     const QColor selectedColor = QColor(0, 0, 0);
-    if (squares[row][col]->brush().color() != selectedColor){
-        squares[row][col]->setBrush(QBrush(selectedColor));
-    } else {
-        squares[row][col]->setBrush(QBrush(((row + col) % 2 == 0) ? QColor(121, 72, 57) : QColor(93, 50, 49)));
+    if (squares[col][row]->brush().color() != selectedColor)
+    {
+        squares[col][row]->setBrush(QBrush(selectedColor));
+    }
+    else
+    {
+        squares[col][row]->setBrush(QBrush(((row + col) % 2 == 0) ? QColor(121, 72, 57) : QColor(93, 50, 49)));
     }
 }
 
-QGraphicsScene *UI_ChessBoard::getScene() const
+MyGraphicsScene *UI_ChessBoard::getScene() const
 {
     return scene;
 }

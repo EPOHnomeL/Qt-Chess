@@ -26,6 +26,5 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     UI_ChessBoard *cb;
-
 };
 #endif // MAINWINDOW_H
