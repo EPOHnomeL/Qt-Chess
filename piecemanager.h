@@ -1,33 +1,25 @@
-#ifndef PIECE_H
-#define PIECE_H
+#ifndef PIECEMANAGER_H
+#define PIECEMANAGER_H
 
 #include <QString>
 
-struct BoardSquares;
 struct SquarePosition
 {
     int row, col;
 };
 
-class Piece
+struct Map{
+    int *map[8][8];
+};
+
+class PieceManager
 {
 public:
-    Piece();
-    virtual BoardSquares GetValidMoves();
-    SquarePosition GetPosition();
-    int GetScore();
-    // GetModel(): Image
+    PieceManager();
+    void GetValidMoves(int piece, SquarePosition pos);
+
 private:
-    QString pieceName;
-    bool isOwnerWhite;
-    int score;
-    SquarePosition pos;
-    // Image model
+
 };
 
-struct BoardSquares
-{
-    SquarePosition board[8][8];
-};
-
-#endif // PIECE_H
+#endif // PIECEMANAGER_H

@@ -7,7 +7,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QLabel>
-#include "piece.h"
+#include "piecemanager.h"
 #include "mygraphicsscene.h"
 class UI_ChessBoard : public QWidget
 {
@@ -18,6 +18,8 @@ public:
     void SetInfoText(QString s);
     void ClearBoard();
     void PutPieceAt(QString resName, int row, int col);
+    void PutValidAt(int row, int col);
+    void ClearValid();
     void RemovePieceAt(int row, int col);
     void ResetBoard();
     void toggleSquareActive(int row, int col);
@@ -25,11 +27,13 @@ public:
 
 private:
     QLabel *label;
+
     QLayout *layout;
     QGraphicsView *view;
     MyGraphicsScene *scene;
     QGraphicsRectItem *squares[8][8];
     QGraphicsPixmapItem *piecesPngs[8][8];
+    QGraphicsPixmapItem *validPngs[30];
     QGraphicsTextItem *text[8][2];
 };
 

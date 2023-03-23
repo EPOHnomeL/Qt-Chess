@@ -10,7 +10,6 @@ class Chess : public QObject
     Q_OBJECT
 public:
     explicit Chess(QObject *parent = nullptr, Player *w = nullptr, Player *b = nullptr);
-    void TryMovePiece(Player player, Piece p, Piece to);
     bool getGameFinished();
     QString getGameFinishedMessage();
     bool getTurn();

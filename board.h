@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "piece.h"
+#include "piecemanager.h"
 #include "player.h"
 #include <QString>
 #include <QObject>
@@ -22,10 +22,11 @@ enum pieces
     w_queen,
     b_queen,
     w_king,
-    b_king
+    b_king,
+    valid
 };
 
-const QString piecesNames[13] = {
+const QString piecesNames[14] = {
     "empty",
     "w_pawn",
     "b_pawn",
@@ -38,12 +39,8 @@ const QString piecesNames[13] = {
     "w_queen",
     "b_queen",
     "w_king",
-    "b_king"};
-
-const QString sStarting[2][2][8] = {{{"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"},
-                                     {"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"}},
-                                    {{"rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"},
-                                     {"pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"}}};
+    "b_king",
+    "valid"};
 
 const int starting[8][8] = {
     {b_rook, b_knight, b_bishop, b_queen, b_king, b_bishop, b_knight, b_rook},
@@ -61,7 +58,6 @@ class Board : public QObject
 public:
     explicit Board(QObject *parent = nullptr, Player *w = nullptr, Player *b = nullptr);
     QString GetANotation();
-    void MovePiece(Piece &from, SquarePosition to);
     int GetNameNumber();
     void IncrementMoveNumber();
     void PrintBoard();
@@ -74,11 +70,12 @@ signals:
     void change();
 
 private:
+    PieceManager *pm;
     SquarePosition selectedSquare;
-    Piece *selectedPiece;
     UI_ChessBoard *ui_chessboard;
     Player *players[2];
     void InitBoardState();
+    void PrintBoardState();
     int *boardstate[8][8];
     bool isWhitesTurn;
     int moveNumber;

@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QPoint>
 #include <QMouseEvent>
-#include "piece.h"
+#include "piecemanager.h"
 
 class MyGraphicsScene : public QGraphicsScene
 {

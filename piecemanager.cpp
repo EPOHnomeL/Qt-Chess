@@ -1,20 +1,13 @@
-#include "piece.h"
+#include "PieceManager.h"
 #include "board.h"
 
-Piece::Piece()
+PieceManager::PieceManager()
 {
 }
 
-SquarePosition Piece::GetPosition()
+void PieceManager::GetValidMoves(int piece, SquarePosition pos)
 {
-    return {0, 0};
+
 }
 
-int Piece::GetScore()
-{
-    return 0;
-}
-
-BoardSquares Piece::GetValidMoves(){};
-
-// Piece::GetModel();
+// PieceManager::GetModel();

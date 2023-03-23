@@ -14,8 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mygraphicsscene.cpp \
-    pawn.cpp \
-    piece.cpp \
+    piecemanager.cpp \
     player.cpp \
     ui_chessboard.cpp
 
@@ -24,8 +23,7 @@ HEADERS += \
     chess.h \
     mainwindow.h \
     mygraphicsscene.h \
-    pawn.h \
-    piece.h \
+    piecemanager.h \
     player.h \
     ui_chessboard.h
 

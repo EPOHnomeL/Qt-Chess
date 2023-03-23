@@ -17,6 +17,7 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
     this->setLayout(layout);
     view->setScene(scene);
 
+    ClearValid();
     ResetBoard();
     SetInfoText("Welcome, press SPACEBAR to start game...");
     view->setFixedSize(803, 803);
@@ -25,8 +26,35 @@ UI_ChessBoard::UI_ChessBoard(QWidget *parent) : QWidget(parent)
 
 void UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
 {
-    if(resName == empty){return;}
+    if (resName == "empty")
+    {
+        piecesPngs[row][col] = nullptr;
+        return;
+    }
     QImage *image = new QImage(":res/chesspieces/" + resName + ".png");
+    QPixmap p = QPixmap::fromImage(*image).scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *png = scene->addPixmap(p); // Add pointer to array
+    png->setPos(17 + (row * 100), 13 + (col * 100));
+    piecesPngs[row][col] = png;
+}
+
+void UI_ChessBoard::ClearValid()
+{
+    for (int i = 0; i < 30; i++)
+    {
+        if (validPngs[i] != nullptr)
+        {
+            scene->removeItem(validPngs[i]);
+            scene->update();
+            view->update();
+            validPngs[i] = nullptr;
+        }
+    }
+}
+
+void UI_ChessBoard::PutValidAt(int row, int col)
+{
+    QImage *image = new QImage(":res/chesspieces/valid.png");
     QPixmap p = QPixmap::fromImage(*image).scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *png = scene->addPixmap(p); // Add pointer to array
     png->setPos(17 + (row * 100), 13 + (col * 100));
@@ -35,8 +63,8 @@ void UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
 
 void UI_ChessBoard::RemovePieceAt(int col, int row)
 {
-
-    if(piecesPngs[row][col] != nullptr){
+    if (piecesPngs[row][col] != nullptr)
+    {
         scene->removeItem(piecesPngs[row][col]);
         scene->update();
         view->update();
@@ -47,8 +75,10 @@ void UI_ChessBoard::RemovePieceAt(int col, int row)
 void UI_ChessBoard::ResetBoard()
 {
     ClearBoard();
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
             QString resName = piecesNames[starting[i][j]];
             PutPieceAt(resName, j, i);
         }
