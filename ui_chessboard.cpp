@@ -40,6 +40,7 @@ void UI_ChessBoard::PutPieceAt(QString resName, int row, int col)
 
 void UI_ChessBoard::ClearValid()
 {
+    numValid = 0;
     for (int i = 0; i < 30; i++)
     {
         if (validPngs[i] != nullptr)
@@ -58,7 +59,8 @@ void UI_ChessBoard::PutValidAt(int row, int col)
     QPixmap p = QPixmap::fromImage(*image).scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *png = scene->addPixmap(p); // Add pointer to array
     png->setPos(17 + (row * 100), 13 + (col * 100));
-    piecesPngs[row][col] = png;
+    validPngs[numValid] = png;
+    numValid++;
 }
 
 void UI_ChessBoard::RemovePieceAt(int col, int row)

@@ -5,9 +5,9 @@ PieceManager::PieceManager()
 {
 }
 
-void PieceManager::GetValidMoves(int piece, SquarePosition pos)
+Map PieceManager::GetValidMoves(int piece, SquarePosition pos)
 {
-
+    return *(new Map);
 }
 
 // PieceManager::GetModel();

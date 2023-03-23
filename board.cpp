@@ -64,12 +64,15 @@ void Board::selectedSquareChanged(SquarePosition pos)
         selectedSquare = pos;
         ui_chessboard->toggleSquareActive(pos.row, pos.col);
         // put all valid moves on screen
-//        ui_chessboard->PutPieceAt(piecesNames[13], pos.col, pos.row-1);
-//        ui_chessboard->PutPieceAt(piecesNames[13], pos.col, pos.row-2);
+        const int iPiece = *boardstate[pos.row][pos.col];
+        Map m = pm->GetValidMoves(iPiece, pos);
+        ui_chessboard->PutValidAt(pos.col, pos.row-1);
+        ui_chessboard->PutValidAt(pos.col, pos.row-2);
     }
     else
     {
         // remove all valid moves on screen
+        ui_chessboard->ClearValid();
         ui_chessboard->RemovePieceAt(pos.row, pos.col);
         // Check if valid move then move or not
         ui_chessboard->toggleSquareActive(selectedSquare.row, selectedSquare.col);
@@ -101,7 +104,7 @@ void Board::PrintBoardState()
     {
         for (int j = 0; j < 8; j++)
         {
-            cout<< *boardstate[i][j] << "\t";
+            cout<< *boardstate[i][j] << " ";
         }
         cout<<endl;
     }

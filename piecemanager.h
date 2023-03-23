@@ -16,7 +16,7 @@ class PieceManager
 {
 public:
     PieceManager();
-    void GetValidMoves(int piece, SquarePosition pos);
+    Map GetValidMoves(int piece, SquarePosition pos);
 
 private:
 

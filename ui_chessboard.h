@@ -27,7 +27,7 @@ public:
 
 private:
     QLabel *label;
-
+    int numValid;
     QLayout *layout;
     QGraphicsView *view;
     MyGraphicsScene *scene;

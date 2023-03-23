@@ -22,11 +22,10 @@ enum pieces
     w_queen,
     b_queen,
     w_king,
-    b_king,
-    valid
+    b_king
 };
 
-const QString piecesNames[14] = {
+const QString piecesNames[13] = {
     "empty",
     "w_pawn",
     "b_pawn",
@@ -39,8 +38,7 @@ const QString piecesNames[14] = {
     "w_queen",
     "b_queen",
     "w_king",
-    "b_king",
-    "valid"};
+    "b_king"};
 
 const int starting[8][8] = {
     {b_rook, b_knight, b_bishop, b_queen, b_king, b_bishop, b_knight, b_rook},
